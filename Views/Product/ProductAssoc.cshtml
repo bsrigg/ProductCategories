@@ -1,0 +1,32 @@
+﻿@model Product
+<h1 style="text-align: center"><a href="/">Products</a> | <a href="/categories">Categories</a></h1><br>
+<h1 style="text-align: center">@ViewBag.MyProduct.Name</h1><br>
+<div class="leftside">
+    <h3 style="text-align: center">Categories:</h3><br>
+    <div style="width: 30%; margin-left: auto; margin-right: auto;">
+        <ul>
+            @foreach(var pp in ViewBag.MyProduct.ProductGrouping)
+            {
+                <li>
+                    @pp.Category.Name
+                    <a href="/UnCategorize/@pp.ProductId/@pp.Category.CategoryId" >&times;</a>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>
+<div class="rightside">
+    <h3 style="text-align: center">Add Category:</h3><br>
+        <div style="width: 50%; margin-left: auto; margin-right: auto;">
+                @foreach(var cat in ViewBag.CurrentCategories)
+                {
+                    <form style="margin-left: auto; margin-right: auto" action="/CreateProdAssoc" method="post">
+                        <input type="hidden" name="ProductId" value="@ViewBag.MyProduct.ProductId" />
+                        <input type="hidden" name="CategoryId" value="@cat.CategoryId" />
+                        <input type="submit" value="@cat.Name" class="btn btn-info center-block"/>
+                    </form><br>
+                }
+
+        </div>
+</div>

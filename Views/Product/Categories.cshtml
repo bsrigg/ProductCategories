@@ -1,0 +1,25 @@
+﻿@model Category
+<h1 style="text-align: center"><a href="/">Products</a> | <a href="/categories">Categories</a></h1><br><br>
+<div class="leftside">
+    <h3 style="text-align: center">New Category</h3><br><br>
+        <div style="width: 50%; margin-left: auto; margin-right: auto;">
+            <form action="createcategory" method="post" class="form-group">
+                <label>Name</label><br>
+                <input type="text" name="Name" class="form-control" /><br><br>
+                <input type="submit" value="Create" class="btn btn-info"/>
+            </form> 
+        </div>
+</div>
+<div class="vl"></div>
+<div class="rightside">
+    <h3 style="text-align: center">Existing Categories</h3><br><br>
+        <div style="width: 50%; margin-left: auto; margin-right: auto;" class="list-group">
+            <ul>
+                @foreach(var cc in ViewBag.c)
+                {
+                    <button type="button" style="text-align: center" class="list-group-item list-group-item-action"><a href="/categories/@cc.CategoryId">@cc.Name</a></button>
+                }
+
+            </ul>
+        </div>
+</div>
